@@ -11,6 +11,12 @@ CREATE TABLE transacao (
 	FOREIGN KEY (id_origem) REFERENCES origem(id)
 );
 
+CREATE TABLE usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome varchar(50) NOT NULL,
+	senha varchar(16)
+);
+
 CREATE TABLE patrimonio (
     id_transacao INT PRIMARY KEY,
     saldo DECIMAL(10,2) NOT NULL,
@@ -26,4 +32,14 @@ CREATE TABLE origem (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(50) NOT NULL
 );
+
+SELECT transacao.id, transacao.data_transacao, transacao.tipo, transacao.valor, categoria.nome AS nome_categoria, origem.nome AS nome_origem 
+FROM transacao
+INNER JOIN categoria ON transacao.id_categoria = categoria.id
+INNER JOIN origem ON transacao.id_origem = origem.id;
+
+SELECT transacao.id, transacao.data_transacao, transacao.valor, patrimonio.saldo AS saldo_apos_transacao
+FROM transacao
+INNER JOIN patrimonio ON transacao.id = patrimonio.id_transacao
+WHERE transacao.tipo = 'receita'; 
 

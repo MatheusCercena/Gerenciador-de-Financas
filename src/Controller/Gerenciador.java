@@ -10,13 +10,11 @@ public class Gerenciador {
     private List<Transacao> transacoes;
 
 
-    public void salvarTransacao(){
-        // insere e salva no banco de dados
-    }
 
     public void getLista(){
 
     }
+
     public void getSaldo(){
 
     }

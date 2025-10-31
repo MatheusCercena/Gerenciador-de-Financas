@@ -12,22 +12,28 @@ public class Transacao {
     private Origem origem;
     private double valor;
     private Date data;
+    private int parcelamento;
+    private FormaPagamento formaPagamento;
 
-    public Transacao(Origem origem, Categoria categoria, Tipo tipo, Date data, double valor) {
-        this.id = gerarId();
-        this.origem = origem;
-        this.categoria = categoria;
+    public Transacao(int id, Tipo tipo, Categoria categoria, Origem origem, double valor, Date data, int parcelamento, FormaPagamento formaPagamento) {
+        this.id = id;
         this.tipo = tipo;
-        this.data = data;
+        this.categoria = categoria;
+        this.origem = origem;
         this.valor = valor;
+        this.data = data;
+        this.parcelamento = parcelamento;
+        this.formaPagamento = formaPagamento;
     }
 
-    public Transacao(double valor, Date data, Tipo tipo, Categoria categoria, Origem origem, String observacoes) {
-        this.valor = valor;
-        this.data = data;
+    public Transacao(Tipo tipo, Categoria categoria, Origem origem, double valor, Date data, int parcelamento, FormaPagamento formaPagamento) {
         this.tipo = tipo;
         this.categoria = categoria;
         this.origem = origem;
+        this.valor = valor;
+        this.data = data;
+        this.parcelamento = parcelamento;
+        this.formaPagamento = formaPagamento;
     }
 
     public Transacao() {
