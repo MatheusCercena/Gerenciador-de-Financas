@@ -116,7 +116,7 @@ public class TransacaoDao {
               int id = rs.getInt(1);
               transacao.setId(id);
             }
-
+            rs.close();
             return transacao;
         } catch (Exception e) {
             e.printStackTrace();
@@ -157,6 +157,9 @@ public class TransacaoDao {
             pst.setString(7, transacao.getFormaPagamento().name());
             pst.setInt(8, transacao.getId());
 
+            
+
+            rs.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

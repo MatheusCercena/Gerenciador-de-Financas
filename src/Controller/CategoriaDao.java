@@ -26,6 +26,7 @@ public class CategoriaDao {
                 String nome = rs.getString(2);
                 categoria = new Categoria(id, nome);
             }
+            rs.close();
         } catch (Exception e) {e.printStackTrace();}
 
         return categoria;
@@ -41,18 +42,23 @@ public class CategoriaDao {
             pst.setString(1, categoria.getNome());
             pst.executeUpdate();
 
+            ResultSet rs = pst.getGeneratedKeys();
 
-
-
+            if (rs.next()) {
+                int id = rs.getInt(1);
+                categoria.setId(id);
+            }
+            rs.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return categoria;
     }
 
     public List<Categoria> listar() {
         List<Categoria> categorias = new ArrayList<>();
+
+
 
         return categorias;
     }
@@ -66,7 +72,4 @@ public class CategoriaDao {
 
         return false;
     }
-
-
-
 }
