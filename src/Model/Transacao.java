@@ -1,12 +1,10 @@
 package Model;
 
-import Model.Categoria;
-import Model.Origem;
-
-import java.util.Date;
+import java.sql.Date;
 
 public class Transacao {
     private int id;
+    private int idUsuario;
     private Tipo tipo;
     private Categoria categoria;
     private Origem origem;
@@ -15,8 +13,9 @@ public class Transacao {
     private int parcelamento;
     private FormaPagamento formaPagamento;
 
-    public Transacao(int id, Tipo tipo, Categoria categoria, Origem origem, double valor, Date data, int parcelamento, FormaPagamento formaPagamento) {
+    public Transacao(int id, int idUsuario, Tipo tipo, Categoria categoria, Origem origem, double valor, Date data, int parcelamento, FormaPagamento formaPagamento) {
         this.id = id;
+        this.idUsuario = idUsuario;
         this.tipo = tipo;
         this.categoria = categoria;
         this.origem = origem;
@@ -26,8 +25,9 @@ public class Transacao {
         this.formaPagamento = formaPagamento;
     }
 
-    public Transacao(Tipo tipo, Categoria categoria, Origem origem, double valor, Date data, int parcelamento, FormaPagamento formaPagamento) {
+    public Transacao(int idUsuario, Tipo tipo, Categoria categoria, Origem origem, double valor, Date data, int parcelamento, FormaPagamento formaPagamento) {
         this.tipo = tipo;
+        this.idUsuario = idUsuario;
         this.categoria = categoria;
         this.origem = origem;
         this.valor = valor;
@@ -49,44 +49,71 @@ public class Transacao {
         return id;
     }
 
-    public double getValor() {
-        return valor;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Date getData() {
-        return data;
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public Tipo getTipo() {
         return tipo;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public Origem getOrigem() {
-        return origem;
-    }
-
-    public void setValor(double valor) {
-        this.valor = valor;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
-    }
-
     public void setTipo(Tipo tipo) {
         this.tipo = tipo;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
     }
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
+    public Origem getOrigem() {
+        return origem;
+    }
+
     public void setOrigem(Origem origem) {
         this.origem = origem;
     }
 
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public int getParcelamento() {
+        return parcelamento;
+    }
+
+    public void setParcelamento(int parcelamento) {
+        this.parcelamento = parcelamento;
+    }
+
+    public FormaPagamento getFormaPagamento() {
+        return formaPagamento;
+    }
+
+    public void setFormaPagamento(FormaPagamento formaPagamento) {
+        this.formaPagamento = formaPagamento;
+    }
 }
