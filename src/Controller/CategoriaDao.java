@@ -41,7 +41,7 @@ public class CategoriaDao {
             pst.setString(1, categoria.getNome());
             pst.executeUpdate();
 
-            
+
 
 
         } catch (Exception e) {
