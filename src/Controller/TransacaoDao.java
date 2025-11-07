@@ -47,6 +47,7 @@ public class TransacaoDao {
 
                 transacao = new Transacao(identificador, usuario, tipo, categoria, origem, valor, data, parcelamento, formaPagamento);
             }
+            rs.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -62,8 +63,7 @@ public class TransacaoDao {
                     origem.id, origem_nome
                 FROM transacao
                 INNER JOIN categoria ON t.id_categoria = c.id
-                INNER JOIN origem o ON t.id_origem = o.id
-                WHERE t.id = ?""";
+                INNER JOIN origem o ON t.id_origem = o.id""";
 
         try (Connection conn = getConexao();
              PreparedStatement pst = conn.prepareStatement(consulta);
@@ -121,7 +121,6 @@ public class TransacaoDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return null;
     }
 
@@ -145,8 +144,7 @@ public class TransacaoDao {
         String consulta = "update jogo set tipo = ?, categoria = ?, origem = ?, valor = ?, data = ?, parcelamento = ?, forma_pagamento = ? where id = ?";
 
         try (Connection conn = getConexao();
-             PreparedStatement pst = conn.prepareStatement(consulta);
-             ResultSet rs = pst.executeQuery()) {
+             PreparedStatement pst = conn.prepareStatement(consulta);) {
 
             pst.setString(1, transacao.getTipo().name());
             pst.setString(2, transacao.getCategoria().getNome());
@@ -157,13 +155,11 @@ public class TransacaoDao {
             pst.setString(7, transacao.getFormaPagamento().name());
             pst.setInt(8, transacao.getId());
 
-            
+            pst.executeUpdate();
 
-            rs.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return transacao;
     }
 }
