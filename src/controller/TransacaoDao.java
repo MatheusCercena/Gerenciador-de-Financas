@@ -1,16 +1,15 @@
-package Controller;
+package controller;
 
-import Model.*;
+import model.*;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static Model.ConexaoDB.getConexao;
+import static model.ConexaoDB.getConexao;
 
 
 public class TransacaoDao {
-
     public Transacao buscarID(int id) {
         Transacao transacao = null;
         String consulta = """
@@ -48,9 +47,7 @@ public class TransacaoDao {
                 transacao = new Transacao(identificador, usuario, tipo, categoria, origem, valor, data, parcelamento, formaPagamento);
             }
             rs.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        } catch (Exception e) {e.printStackTrace();}
         return transacao;
     }
 
@@ -88,9 +85,7 @@ public class TransacaoDao {
                 Transacao transacao = new Transacao(identificador, usuario, tipo, categoria, origem, valor, data, parcelamento, formaPagamento);
                 transacoes.add(transacao);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        } catch (Exception e) {e.printStackTrace();}
         return transacoes;
     }
 
@@ -134,13 +129,11 @@ public class TransacaoDao {
             pst.executeUpdate();
 
             return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        } catch (Exception e) {e.printStackTrace();}
         return false;
     }
 
-    public Transacao alterar(Transacao transacao) {
+    public void alterar(Transacao transacao) {
         String consulta = "update jogo set tipo = ?, categoria = ?, origem = ?, valor = ?, data = ?, parcelamento = ?, forma_pagamento = ? where id = ?";
 
         try (Connection conn = getConexao();
@@ -157,9 +150,6 @@ public class TransacaoDao {
 
             pst.executeUpdate();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return transacao;
+        } catch (Exception e) {e.printStackTrace();}
     }
 }

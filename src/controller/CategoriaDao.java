@@ -1,7 +1,7 @@
-package Controller;
+package controller;
 
-import Model.Categoria;
-import static Model.ConexaoDB.getConexao;
+import model.Categoria;
+import static model.ConexaoDB.getConexao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -72,7 +72,7 @@ public class CategoriaDao {
         return categorias;
     }
 
-    public Categoria alterar(Categoria categoria) {
+    public void alterar(Categoria categoria) {
         String consulta = "update categoria set nome = ? where id = ?";
 
         try (Connection conn = getConexao();
@@ -81,8 +81,6 @@ public class CategoriaDao {
             pst.setInt(1, categoria.getId());
             pst.executeUpdate();
         } catch (Exception e) {e.printStackTrace();}
-
-        return categoria;
     }
 
     public boolean excluir(Categoria categoria) {

@@ -1,7 +1,7 @@
-package Controller;
+package controller;
 
-import Model.Origem;
-import static Model.ConexaoDB.getConexao;
+import model.Origem;
+import static model.ConexaoDB.getConexao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -72,7 +72,7 @@ public class OrigemDao {
         return origens;
     }
 
-    public Origem alterar(Origem origem) {
+    public void alterar(Origem origem) {
         String consulta = "update origem set nome = ? where id = ?";
 
         try (Connection conn = getConexao();
@@ -81,8 +81,6 @@ public class OrigemDao {
             pst.setInt(1, origem.getId());
             pst.executeUpdate();
         } catch (Exception e) {e.printStackTrace();}
-
-        return origem;
     }
 
     public boolean excluir(Origem origem) {
