@@ -3,7 +3,6 @@ package View.autenticacao;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
-import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -14,84 +13,81 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import View.estilos.CoresDoProjeto;
+import View.estilos.FontesDoProjeto;
+import View.estilos.IconesDoProjeto;
 
 public class LoginPainelPrincipal extends JPanel {
-	private final Color COR_FUNDO = new Color(0xDCE5DE);
-	private final Color COR_TEXTO = new Color(0x4C593F);
-	private final Color COR_BOTAO = new Color(0x7C8C64);
-
-	private final Font fonteTitulo = new Font("Segoe UI", Font.BOLD, 26);
-	private final Font fonteTexto = new Font("Segoe UI", Font.PLAIN, 20);
-	private final Font fonteAuxiliar = new Font("Segoe UI", Font.PLAIN, 14);
-
+	private static final long serialVersionUID = 1L;
+		
 	private JLabel titulo;
 	private JLabel emailLabel;
-	private JTextField emailCaixaTexto;
+	private JTextFieldComIcone emailCaixaTexto;
 	private JLabel senhaLabel;
-	private JPasswordField senhaCaixaTexto;
+	private JPasswordFieldComIcone senhaCaixaTexto;
 	private JButton entrarButton;
 	private JLabel cadastrarLabel;
 
 	public LoginPainelPrincipal() {
 		this.setLayout(new GridBagLayout());
-		this.setBackground(COR_FUNDO);
+		this.setBackground(CoresDoProjeto.FUNDO);
 		iniciarComponentes();
 		construirLayout();
-
 	}
 
-	private void iniciarComponentes() {
-
+	private void iniciarComponentes() {		
 		titulo = new JLabel("Bem Vindo!");
-		titulo.setFont(fonteTitulo);
-		titulo.setForeground(COR_TEXTO);
+		titulo.setFont(FontesDoProjeto.TITULO);
+		titulo.setForeground(CoresDoProjeto.TEXTO);
+		titulo.setHorizontalAlignment(SwingConstants.CENTER);
 
 		emailLabel = new JLabel("Digite seu email: ");
-		emailLabel.setFont(fonteTexto);
-		emailLabel.setForeground(COR_TEXTO);
+		emailLabel.setFont(FontesDoProjeto.TEXTO);
+		emailLabel.setForeground(CoresDoProjeto.TEXTO);
 
-		emailCaixaTexto = new JTextField(50);
-		emailCaixaTexto.setFont(fonteTexto);
-		emailCaixaTexto.setForeground(COR_TEXTO);
-		emailCaixaTexto.setBorder(BorderFactory.createLineBorder(COR_TEXTO, 0, true));
-
+		emailCaixaTexto = new JTextFieldComIcone(IconesDoProjeto.EMAIL);
+		emailCaixaTexto.setFont(FontesDoProjeto.CAMPOS);
+		emailCaixaTexto.setForeground(CoresDoProjeto.TEXTO);
+		emailCaixaTexto.setBorder(BorderFactory.createLineBorder(CoresDoProjeto.TEXTO, 0, true));
+		
 		senhaLabel = new JLabel("Senha: ");
-		senhaLabel.setFont(fonteTexto);
-		senhaLabel.setForeground(COR_TEXTO);
-
-		senhaCaixaTexto = new JPasswordField(8);
-		senhaCaixaTexto.setFont(fonteTexto);
-		senhaCaixaTexto.setForeground(COR_TEXTO);
-		senhaCaixaTexto.setBorder(BorderFactory.createLineBorder(COR_TEXTO, 0, true));
+		senhaLabel.setFont(FontesDoProjeto.TEXTO);
+		senhaLabel.setForeground(CoresDoProjeto.TEXTO);
+	
+		senhaCaixaTexto = new JPasswordFieldComIcone(IconesDoProjeto.CADEADO);
+		senhaCaixaTexto.setBorder(BorderFactory.createLineBorder(CoresDoProjeto.TEXTO, 0, true));
+		senhaCaixaTexto.setFont(FontesDoProjeto.CAMPOS);
+		senhaCaixaTexto.setForeground(CoresDoProjeto.TEXTO);
+		senhaCaixaTexto.setColumns(8);
 
 		entrarButton = new JButton("Entrar");
-		entrarButton.setFont(fonteTexto);
+		entrarButton.setFont(FontesDoProjeto.TEXTO);
 		entrarButton.setForeground(Color.WHITE);
-		entrarButton.setBackground(COR_BOTAO);
+		entrarButton.setBackground(CoresDoProjeto.ESCURO);
 		entrarButton.setFocusPainted(false);
 
 		cadastrarLabel = new JLabel("Não tem login? Cadastre-se");
-		cadastrarLabel.setFont(fonteAuxiliar);
+		cadastrarLabel.setFont(FontesDoProjeto.AUXILIAR);
 		cadastrarLabel.setForeground(Color.BLACK);
 		cadastrarLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		cadastrarLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				Map<TextAttribute, Object> atributos = Map.of(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
-				cadastrarLabel.setFont(fonteAuxiliar.deriveFont(atributos));
+				cadastrarLabel.setFont(FontesDoProjeto.AUXILIAR.deriveFont(atributos));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				cadastrarLabel.setFont(fonteAuxiliar);
+				cadastrarLabel.setFont(FontesDoProjeto.AUXILIAR);
 			}
 		});
 	}
 
 	private void construirLayout() {
-		adicionarComp(titulo, new CustomGBC(0, 0, 0));
+		adicionarComp(titulo, new CustomGBC(0, 0, 0).centralizar());
 		adicionarComp(emailLabel, new CustomGBC(0, 1, 0));
 		adicionarComp(emailCaixaTexto, new CustomGBC(0, 2, 0).preencherH());
 		adicionarComp(senhaLabel, new CustomGBC(0, 3, 0));

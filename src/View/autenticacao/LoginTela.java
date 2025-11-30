@@ -7,7 +7,6 @@ public class LoginTela {
 	private LoginPainelSuperior painelSuperior = new LoginPainelSuperior();
 	private LoginPainelPrincipal painelPrincipal = new LoginPainelPrincipal();
 
-	// Launch the application.
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -21,12 +20,10 @@ public class LoginTela {
 		});
 	}
 
-	// Create the application.
 	public LoginTela() {
 		initialize();
 	}
 
-	// Initialize the contents of the frame.
 	private void initialize() {
 		frame.add(painelSuperior);
 		frame.add(painelPrincipal);
