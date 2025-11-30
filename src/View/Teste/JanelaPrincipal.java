@@ -1,36 +1,39 @@
 package View.Teste;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.ComponentOrientation;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableModel;
 
 import View.autenticacao.LoginPainelSuperior;
 import View.estilos.CoresDoProjeto;
-
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
-import java.awt.FlowLayout;
-import java.awt.Color;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.border.MatteBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JComboBox;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
-import java.awt.Component;
-import javax.swing.BoxLayout;
-import javax.swing.Box;
-import javax.swing.DefaultComboBoxModel;
+import View.estilos.FontesDoProjeto;
 import model.FiltrosPorData;
-import java.awt.ComponentOrientation;
-import java.awt.Cursor;
-import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class JanelaPrincipal {
 	private static final ImageIcon icon = new ImageIcon(LoginPainelSuperior.class.getResource("/View/resources/logo_mmex.png"));
@@ -85,35 +88,73 @@ public class JanelaPrincipal {
 		frame.getContentPane().add(toolbar, BorderLayout.NORTH);
 		
 		JPanel lateralBalanco = new JPanel();
+		lateralBalanco.setAlignmentY(Component.TOP_ALIGNMENT);
+		lateralBalanco.setAlignmentX(Component.LEFT_ALIGNMENT);
 		lateralBalanco.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		lateralBalanco.setPreferredSize(new Dimension(350, 0));
 		lateralBalanco.setMaximumSize(new Dimension(400, 32767));
 		frame.getContentPane().add(lateralBalanco, BorderLayout.WEST);
-		lateralBalanco.setLayout(new BoxLayout(lateralBalanco, BoxLayout.Y_AXIS));
-		
-		JLabel lblNewLabel = new JLabel("Balanço");
-		lblNewLabel.setHorizontalTextPosition(SwingConstants.LEFT);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 32));
-		lateralBalanco.add(lblNewLabel);
-		
+		lateralBalanco.setLayout(null);
+
 		JComboBox<FiltrosPorData> comboBox = new JComboBox<FiltrosPorData>();
+		comboBox.setBounds(28, 86, 300, 50);
+		comboBox.setModel(new DefaultComboBoxModel<>(FiltrosPorData.values()));
+		comboBox.setAlignmentY(Component.TOP_ALIGNMENT);
 		comboBox.setMinimumSize(new Dimension(300, 50));
 		comboBox.setMaximumSize(new Dimension(300, 50));
 		comboBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		comboBox.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		comboBox.setToolTipText("Selecione a data que deseja filtrar");
 		comboBox.setPreferredSize(new Dimension(300, 50));
 		lateralBalanco.add(comboBox);
 		
-		Component verticalGlue = Box.createVerticalGlue();
-		lateralBalanco.add(verticalGlue);
+		JLabel lblBalanco = new JLabel("Balanço");
+		lblBalanco.setFont(FontesDoProjeto.TITULO);
+		lblBalanco.setBounds(28, 30, 175, 45);
+		lblBalanco.setPreferredSize(new Dimension(Integer.MAX_VALUE, 14));
+		lblBalanco.setMaximumSize(new Dimension(Integer.MAX_VALUE, 14));
+		lblBalanco.setHorizontalAlignment(SwingConstants.LEFT);
+		lateralBalanco.add(lblBalanco);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(28, 147, 300, 537);
+		lateralBalanco.add(panel);
 				
 		JPanel lateralTransacao = new JPanel();
+		lateralTransacao.setAlignmentY(Component.TOP_ALIGNMENT);
+		lateralTransacao.setPreferredSize(new Dimension(350, 0));
+		lateralTransacao.setAutoscrolls(true);
+		lateralTransacao.setAlignmentX(Component.LEFT_ALIGNMENT);
+		lateralTransacao.setMinimumSize(new Dimension(400, 0));
 		lateralTransacao.setBorder(new MatteBorder(0, 4, 0, 0, (Color) CoresDoProjeto.ESCURO));
 		lateralTransacao.setBackground(CoresDoProjeto.FUNDO);
 		frame.getContentPane().add(lateralTransacao, BorderLayout.EAST);
-		lateralTransacao.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 15));
+		GridBagLayout gbl_lateralTransacao = new GridBagLayout();
+		gbl_lateralTransacao.columnWidths = new int[] {173, 173, 0, 1};
+		gbl_lateralTransacao.rowHeights = new int[]{1011, 0, 0};
+		gbl_lateralTransacao.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_lateralTransacao.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		lateralTransacao.setLayout(gbl_lateralTransacao);
+		
+		// criar grid bag layout manualmente e aplicar ao painel
+		// separar janela principal em arquivos menores
+		
+		JComboBox comboBox_1 = new JComboBox();
+		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
+		gbc_comboBox_1.gridwidth = 2;
+		gbc_comboBox_1.fill = GridBagConstraints.BOTH;
+		gbc_comboBox_1.insets = new Insets(0, 0, 0, 5);
+		gbc_comboBox_1.gridx = 0;
+		gbc_comboBox_1.gridy = 1;
+		lateralTransacao.add(comboBox_1, gbc_comboBox_1);
+		
+		JLabel lblTipo = new JLabel("Tipo");
+		lblTipo.setAlignmentY(Component.TOP_ALIGNMENT);
+		GridBagConstraints gbc_lblTipo = new GridBagConstraints();
+		gbc_lblTipo.anchor = GridBagConstraints.NORTH;
+		gbc_lblTipo.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblTipo.gridx = 0;
+		gbc_lblTipo.gridy = 0;
+		lateralTransacao.add(lblTipo, gbc_lblTipo);
 		
 		JPanel tabelaTransacoes = new JPanel();
 		tabelaTransacoes.setBorder(new EmptyBorder(10, 15, 0, 15));
@@ -167,5 +208,4 @@ public class JanelaPrincipal {
 		tabelaTransacoes.add(scrollPane);
 
 	}
-
 }
