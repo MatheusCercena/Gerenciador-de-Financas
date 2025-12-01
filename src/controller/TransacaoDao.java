@@ -42,9 +42,8 @@ public class TransacaoDao {
                 double valor = rs.getDouble("transacao.valor");
                 Date data = rs.getDate("transacao.date");
                 int parcelamento = rs.getInt("transacao.parcelamento");
-                FormaPagamento formaPagamento = FormaPagamento.valueOf("forma_pagamento");
 
-                transacao = new Transacao(identificador, usuario, tipo, categoria, origem, valor, data, parcelamento, formaPagamento);
+                transacao = new Transacao(identificador, usuario, tipo, categoria, origem, valor, data);
             }
             rs.close();
         } catch (Exception e) {e.printStackTrace();}
@@ -80,9 +79,8 @@ public class TransacaoDao {
                 double valor = rs.getDouble("transacao.valor");
                 Date data = rs.getDate("transacao.date");
                 int parcelamento = rs.getInt("transacao.parcelamento");
-                FormaPagamento formaPagamento = FormaPagamento.valueOf("forma_pagamento");
 
-                Transacao transacao = new Transacao(identificador, usuario, tipo, categoria, origem, valor, data, parcelamento, formaPagamento);
+                Transacao transacao = new Transacao(identificador, usuario, tipo, categoria, origem, valor, data);
                 transacoes.add(transacao);
             }
         } catch (Exception e) {e.printStackTrace();}
@@ -90,7 +88,7 @@ public class TransacaoDao {
     }
 
     public Transacao inserir(Transacao transacao){
-        String consulta = "insert into transacao(id_usuario, tipo, categoria, origem, valor, data, parcelamento, forma_pagamento) values (?, ?, ?, ?, ?, ?, ?, ?)";
+        String consulta = "insert into transacao(id_usuario, tipo, categoria, origem, valor, data, parcelamento, forma_pagamento) values (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = getConexao();
             PreparedStatement pst = conn.prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS);) {
@@ -101,8 +99,6 @@ public class TransacaoDao {
             pst.setString(4, transacao.getOrigem().getNome());
             pst.setDouble(5, transacao.getValor());
             pst.setDate(6, transacao.getData());
-            pst.setInt(7, transacao.getParcelamento());
-            pst.setString(8, transacao.getFormaPagamento().name());
 
             pst.executeUpdate();
             ResultSet rs = pst.getGeneratedKeys();
@@ -134,7 +130,7 @@ public class TransacaoDao {
     }
 
     public void alterar(Transacao transacao) {
-        String consulta = "update jogo set tipo = ?, categoria = ?, origem = ?, valor = ?, data = ?, parcelamento = ?, forma_pagamento = ? where id = ?";
+        String consulta = "update jogo set tipo = ?, categoria = ?, origem = ?, valor = ?, data = ? where id = ?";
 
         try (Connection conn = getConexao();
              PreparedStatement pst = conn.prepareStatement(consulta);) {
@@ -144,9 +140,7 @@ public class TransacaoDao {
             pst.setString(3, transacao.getOrigem().getNome());
             pst.setDouble(4, transacao.getValor());
             pst.setDate(5, transacao.getData());
-            pst.setInt(6, transacao.getParcelamento());
-            pst.setString(7, transacao.getFormaPagamento().name());
-            pst.setInt(8, transacao.getId());
+            pst.setInt(6, transacao.getId());
 
             pst.executeUpdate();
 

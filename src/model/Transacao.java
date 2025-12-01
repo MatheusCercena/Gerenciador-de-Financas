@@ -10,10 +10,8 @@ public class Transacao {
     private Origem origem;
     private double valor;
     private Date data;
-    private int parcelamento;
-    private FormaPagamento formaPagamento;
 
-    public Transacao(int id, int idUsuario, Tipo tipo, Categoria categoria, Origem origem, double valor, Date data, int parcelamento, FormaPagamento formaPagamento) {
+    public Transacao(int id, int idUsuario, Tipo tipo, Categoria categoria, Origem origem, double valor, Date data) {
         this.id = id;
         this.idUsuario = idUsuario;
         this.tipo = tipo;
@@ -21,19 +19,15 @@ public class Transacao {
         this.origem = origem;
         this.valor = valor;
         this.data = data;
-        this.parcelamento = parcelamento;
-        this.formaPagamento = formaPagamento;
     }
 
-    public Transacao(int idUsuario, Tipo tipo, Categoria categoria, Origem origem, double valor, Date data, int parcelamento, FormaPagamento formaPagamento) {
+    public Transacao(int idUsuario, Tipo tipo, Categoria categoria, Origem origem, double valor, Date data) {
         this.tipo = tipo;
         this.idUsuario = idUsuario;
         this.categoria = categoria;
         this.origem = origem;
         this.valor = valor;
         this.data = data;
-        this.parcelamento = parcelamento;
-        this.formaPagamento = formaPagamento;
     }
 
     public Transacao() {
@@ -101,19 +95,4 @@ public class Transacao {
         this.data = data;
     }
 
-    public int getParcelamento() {
-        return parcelamento;
-    }
-
-    public void setParcelamento(int parcelamento) {
-        this.parcelamento = parcelamento;
-    }
-
-    public FormaPagamento getFormaPagamento() {
-        return formaPagamento;
-    }
-
-    public void setFormaPagamento(FormaPagamento formaPagamento) {
-        this.formaPagamento = formaPagamento;
-    }
 }

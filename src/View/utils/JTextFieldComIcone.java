@@ -1,4 +1,4 @@
-package View.autenticacao;
+package View.utils;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 public class JTextFieldComIcone extends JTextField {
 	private static final long serialVersionUID = 1L;
 	private final Icon icone;
-    private final int padding = 25;
+    private final int padding = 28;
     
 	public JTextFieldComIcone(Icon icone) {
 		this.icone = icone;

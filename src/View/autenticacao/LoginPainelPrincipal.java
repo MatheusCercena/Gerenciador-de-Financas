@@ -18,6 +18,9 @@ import javax.swing.SwingConstants;
 import View.estilos.CoresDoProjeto;
 import View.estilos.FontesDoProjeto;
 import View.estilos.IconesDoProjeto;
+import View.utils.CustomGBC;
+import View.utils.JPasswordFieldComIcone;
+import View.utils.JTextFieldComIcone;
 
 public class LoginPainelPrincipal extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -60,7 +63,6 @@ public class LoginPainelPrincipal extends JPanel {
 		senhaCaixaTexto.setBorder(BorderFactory.createLineBorder(CoresDoProjeto.TEXTO, 0, true));
 		senhaCaixaTexto.setFont(FontesDoProjeto.CAMPOS);
 		senhaCaixaTexto.setForeground(CoresDoProjeto.TEXTO);
-		senhaCaixaTexto.setColumns(8);
 
 		entrarButton = new JButton("Entrar");
 		entrarButton.setFont(FontesDoProjeto.TEXTO);
