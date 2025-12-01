@@ -4,16 +4,14 @@ import java.sql.Date;
 
 public class Transacao {
     private int id;
-    private int idUsuario;
     private Tipo tipo;
     private Categoria categoria;
     private Origem origem;
     private double valor;
     private Date data;
 
-    public Transacao(int id, int idUsuario, Tipo tipo, Categoria categoria, Origem origem, double valor, Date data) {
+    public Transacao(int id, Tipo tipo, Categoria categoria, Origem origem, double valor, Date data) {
         this.id = id;
-        this.idUsuario = idUsuario;
         this.tipo = tipo;
         this.categoria = categoria;
         this.origem = origem;
@@ -21,9 +19,8 @@ public class Transacao {
         this.data = data;
     }
 
-    public Transacao(int idUsuario, Tipo tipo, Categoria categoria, Origem origem, double valor, Date data) {
+    public Transacao(Tipo tipo, Categoria categoria, Origem origem, double valor, Date data) {
         this.tipo = tipo;
-        this.idUsuario = idUsuario;
         this.categoria = categoria;
         this.origem = origem;
         this.valor = valor;
@@ -47,13 +44,6 @@ public class Transacao {
         this.id = id;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
 
     public Tipo getTipo() {
         return tipo;

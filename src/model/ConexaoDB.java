@@ -14,7 +14,7 @@ public class ConexaoDB {
             e.printStackTrace();
         }
 
-        String url = "jdbc:mysql://localhost:3306/";
+        String url = "jdbc:mysql://localhost:3306/ies";
         String senha = "1234";
         String user = "root";
 
@@ -22,6 +22,7 @@ public class ConexaoDB {
 
         try {
             conn = DriverManager.getConnection(url, user, senha);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

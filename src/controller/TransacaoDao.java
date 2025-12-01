@@ -14,7 +14,7 @@ public class TransacaoDao {
         Transacao transacao = null;
         String consulta = """
                 SELECT
-                    transacao.id, transacao.tipo, transacao.valor, transacao.data, transacao.parcelamento, transacao.forma_pagamento
+                    transacao.id, transacao.tipo, transacao.valor, transacao.data_transacao
                     categoria.id, categoria.nome,
                     origem.id, origem_nome
                 FROM transacao
@@ -35,15 +35,13 @@ public class TransacaoDao {
                 String nome_origem = rs.getString("origem_nome");
 
                 int identificador = rs.getInt("transacao.id");
-                int usuario = rs.getInt("transacao.id_usuario");
                 Tipo tipo = Tipo.valueOf(rs.getString("transacao.tipo"));
                 Categoria categoria = new Categoria(id_categoria, nome_categoria);
                 Origem origem = new Origem(id_origem, nome_origem);
                 double valor = rs.getDouble("transacao.valor");
                 Date data = rs.getDate("transacao.date");
-                int parcelamento = rs.getInt("transacao.parcelamento");
 
-                transacao = new Transacao(identificador, usuario, tipo, categoria, origem, valor, data);
+                transacao = new Transacao(identificador, tipo, categoria, origem, valor, data);
             }
             rs.close();
         } catch (Exception e) {e.printStackTrace();}
@@ -54,7 +52,7 @@ public class TransacaoDao {
         List<Transacao> transacoes = new ArrayList<>();
         String consulta = """
                 SELECT
-                    transacao.id, transacao.tipo, transacao.valor, transacao.data, transacao.parcelamento, transacao.forma_pagamento
+                    transacao.id, transacao.tipo, transacao.valor, transacao.data,
                     categoria.id, categoria.nome,
                     origem.id, origem_nome
                 FROM transacao
@@ -72,15 +70,13 @@ public class TransacaoDao {
                 String nome_origem = rs.getString("origem_nome");
 
                 int identificador = rs.getInt("transacao.id");
-                int usuario = rs.getInt("transacao.id_usuario");
                 Tipo tipo = Tipo.valueOf(rs.getString("transacao.tipo"));
                 Categoria categoria = new Categoria(id_categoria, nome_categoria);
                 Origem origem = new Origem(id_origem, nome_origem);
                 double valor = rs.getDouble("transacao.valor");
                 Date data = rs.getDate("transacao.date");
-                int parcelamento = rs.getInt("transacao.parcelamento");
 
-                Transacao transacao = new Transacao(identificador, usuario, tipo, categoria, origem, valor, data);
+                Transacao transacao = new Transacao(identificador, tipo, categoria, origem, valor, data);
                 transacoes.add(transacao);
             }
         } catch (Exception e) {e.printStackTrace();}
@@ -88,17 +84,16 @@ public class TransacaoDao {
     }
 
     public Transacao inserir(Transacao transacao){
-        String consulta = "insert into transacao(id_usuario, tipo, categoria, origem, valor, data, parcelamento, forma_pagamento) values (?, ?, ?, ?, ?, ?)";
+        String consulta = "insert into transacao(tipo, categoria, origem, valor, data) values (?, ?, ?, ?, ?)";
 
         try (Connection conn = getConexao();
             PreparedStatement pst = conn.prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS);) {
 
-            pst.setInt(1, transacao.getIdUsuario());
-            pst.setString(2, transacao.getTipo().name());
-            pst.setString(3, transacao.getCategoria().getNome());
-            pst.setString(4, transacao.getOrigem().getNome());
-            pst.setDouble(5, transacao.getValor());
-            pst.setDate(6, transacao.getData());
+            pst.setString(1, transacao.getTipo().name());
+            pst.setString(2, transacao.getCategoria().getNome());
+            pst.setString(3, transacao.getOrigem().getNome());
+            pst.setDouble(4, transacao.getValor());
+            pst.setDate(5, transacao.getData());
 
             pst.executeUpdate();
             ResultSet rs = pst.getGeneratedKeys();

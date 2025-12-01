@@ -10,6 +10,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import View.estilos.FontesDoProjeto;
+import controller.CategoriaDao;
+import controller.TransacaoDao;
 import model.Transacao;
 
 public class TabelaTransacao extends JTable{
@@ -65,7 +67,11 @@ public class TabelaTransacao extends JTable{
 		
 		this.setFont(FontesDoProjeto.CAMPOS);
 		this.setRowHeight(25);
-		this.setBorder(new LineBorder(new Color(0, 0, 0)));		
+		this.setBorder(new LineBorder(new Color(0, 0, 0)));
+
+        TransacaoDao transacao = new TransacaoDao();
+
+        this.atualizarValores(transacao.listar());
 	}
 
     public void atualizarValores(List<Transacao> listaTransacao){
@@ -76,7 +82,7 @@ public class TabelaTransacao extends JTable{
         }
     }
 
-    private int pegarIdLinha() {
+    public int pegarIdLinha() {
         int linha = this.getSelectedRow();
         if (linha != -1) {
             Object idObj = this.getValueAt(linha, 0);

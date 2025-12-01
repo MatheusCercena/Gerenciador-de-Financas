@@ -37,6 +37,7 @@ public class ConteudoCentral extends JPanel {
 
 		iniciarComponentes();
 		construirLayout();
+
 	}
 	
 	private void iniciarComponentes() {
@@ -65,6 +66,7 @@ public class ConteudoCentral extends JPanel {
 		adicionarComp(lblSaldo, new CustomGBC(0, 1, 1).alturaFixa());
 		adicionarComp(comboBox, new CustomGBC(1, 1, 1).alinharDireita().alturaFixa());
 		adicionarComp(scrollTabelaTransacoes, new CustomGBC(0, 2, 2).expandir());
+
     }
 	
 	private void adicionarComp(Component comp, CustomGBC gbc) {
