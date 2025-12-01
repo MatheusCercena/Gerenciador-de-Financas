@@ -3,6 +3,7 @@ package View.janelaPrincipal;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.io.Serial;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -11,7 +12,8 @@ import javax.swing.JSplitPane;
 import View.estilos.IconesDoProjeto;
 
 public class JanelaPrincipal extends JFrame{
-	private static final long serialVersionUID = 1L;
+	@Serial
+    private static final long serialVersionUID = 1L;
 	
 	private ToolBar toolbar = new ToolBar();
 	private LateralTransacao lateralTransacao = new LateralTransacao();
