@@ -2,6 +2,7 @@ package View.utils;
 
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.io.Serial;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -13,20 +14,18 @@ import javax.swing.JPanel;
 import View.estilos.FontesDoProjeto;
 
 public class BotaoToolbar extends JPanel {
-	private static final long serialVersionUID = 1L;
-	
-	private JLabel iconeLabel;
-    private JLabel textoLabel;
-    
+	@Serial
+    private static final long serialVersionUID = 1L;
+
     public BotaoToolbar(ImageIcon icone, String texto) {
     	this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setOpaque(false);
 
-        iconeLabel = new JLabel(icone);
+        JLabel iconeLabel = new JLabel(icone);
         iconeLabel.setAlignmentX(CENTER_ALIGNMENT);
         iconeLabel.setFont(FontesDoProjeto.AUXILIAR);
 
-        textoLabel = new JLabel(texto);
+        JLabel textoLabel = new JLabel(texto);
         textoLabel.setAlignmentX(CENTER_ALIGNMENT);
         textoLabel.setFont(FontesDoProjeto.AUXILIAR);
 

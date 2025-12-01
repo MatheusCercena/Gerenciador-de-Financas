@@ -3,6 +3,7 @@ package View.janelaPrincipal;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
+import java.io.Serial;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -18,11 +19,12 @@ import View.utils.CustomGBC;
 import model.FiltrosPorData;
 
 public class ConteudoCentral extends JPanel {
-	private static final long serialVersionUID = 1L;
+	@Serial
+    private static final long serialVersionUID = 1L;
 	
 	private JLabel lblBalanco = new JLabel("Transações: ");
-	private JLabel lblComboBox = new JLabel("Selecione a data que deseja filtrar");
-	private JComboBox<FiltrosPorData> comboBox = new JComboBox<FiltrosPorData>();
+	private final JLabel lblComboBox = new JLabel("Selecione a data que deseja filtrar");
+	private final JComboBox<FiltrosPorData> comboBox = new JComboBox<FiltrosPorData>();
 	private JLabel lblSaldo = new JLabel("Saldo: ");
 	private JTable tabelaTransacoes = new TabelaTransacao();
 	private JScrollPane scrollTabelaTransacoes;
@@ -37,7 +39,7 @@ public class ConteudoCentral extends JPanel {
 		construirLayout();
 	}
 	
-	private ConteudoCentral iniciarComponentes() {
+	private void iniciarComponentes() {
 		lblBalanco.setFont(FontesDoProjeto.TITULO);
 
 		lblComboBox.setFont(FontesDoProjeto.AUXILIAR);
@@ -53,19 +55,17 @@ public class ConteudoCentral extends JPanel {
 		scrollTabelaTransacoes = new JScrollPane(tabelaTransacoes);
 		scrollTabelaTransacoes.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollTabelaTransacoes.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		
-		return this;
-	}
+
+    }
 	
-	private ConteudoCentral construirLayout() {
+	private void construirLayout() {
 		adicionarComp(lblBalanco, new CustomGBC(0, 0, 1).alturaFixa());
 		adicionarComp(lblComboBox, new CustomGBC(1, 0, 1).alinharDireita().alturaFixa());
 
 		adicionarComp(lblSaldo, new CustomGBC(0, 1, 1).alturaFixa());
 		adicionarComp(comboBox, new CustomGBC(1, 1, 1).alinharDireita().alturaFixa());
 		adicionarComp(scrollTabelaTransacoes, new CustomGBC(0, 2, 2).expandir());
-		return this;
-	}
+    }
 	
 	private void adicionarComp(Component comp, CustomGBC gbc) {
 		this.add(comp, gbc);

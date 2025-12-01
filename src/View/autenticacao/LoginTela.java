@@ -3,9 +3,9 @@ package View.autenticacao;
 import java.awt.EventQueue;
 
 public class LoginTela {
-	private LoginFrame frame = new LoginFrame();
-	private LoginPainelSuperior painelSuperior = new LoginPainelSuperior();
-	private LoginPainelPrincipal painelPrincipal = new LoginPainelPrincipal();
+	private final LoginFrame frame = new LoginFrame();
+	private final LoginPainelSuperior painelSuperior = new LoginPainelSuperior();
+	private final LoginPainelPrincipal painelPrincipal = new LoginPainelPrincipal();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

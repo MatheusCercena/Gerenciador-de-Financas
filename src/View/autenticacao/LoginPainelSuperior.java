@@ -2,6 +2,7 @@ package View.autenticacao;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.io.Serial;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -9,7 +10,8 @@ import javax.swing.JPanel;
 import View.estilos.IconesDoProjeto;
 
 public class LoginPainelSuperior extends JPanel {
-	private static final long serialVersionUID = 1L;
+	@Serial
+    private static final long serialVersionUID = 1L;
 
 	LoginPainelSuperior() {
 		this.setBackground(new Color(0x7C8C64));

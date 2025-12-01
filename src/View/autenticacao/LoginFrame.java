@@ -1,6 +1,7 @@
 package View.autenticacao;
 
 import java.awt.Dimension;
+import java.io.Serial;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -9,7 +10,8 @@ import javax.swing.JFrame;
 import View.estilos.IconesDoProjeto;
 
 public class LoginFrame extends JFrame {
-	private static final long serialVersionUID = 1L;
+	@Serial
+    private static final long serialVersionUID = 1L;
 
 	LoginFrame() {
 		this.setTitle("Gerenciador de Finanças");

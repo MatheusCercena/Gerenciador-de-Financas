@@ -15,12 +15,11 @@ public class JanelaPrincipal extends JFrame{
 	@Serial
     private static final long serialVersionUID = 1L;
 	
-	private ToolBar toolbar = new ToolBar();
-	private LateralTransacao lateralTransacao = new LateralTransacao();
-	private ConteudoCentral conteudoCentral = new ConteudoCentral();
-	private JSplitPane splitPaneCentral;
+	private final ToolBar toolbar = new ToolBar();
+	private final LateralTransacao lateralTransacao = new LateralTransacao();
+	private final ConteudoCentral conteudoCentral = new ConteudoCentral();
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -48,8 +47,8 @@ public class JanelaPrincipal extends JFrame{
 		this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 		this.setLocationRelativeTo(null);
 		this.getContentPane().setLayout(new BorderLayout(0, 0));
-		
-		splitPaneCentral = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, conteudoCentral, lateralTransacao);
+
+        JSplitPane splitPaneCentral = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, conteudoCentral, lateralTransacao);
 		splitPaneCentral.setResizeWeight(0.75);
 		splitPaneCentral.setBorder(null);
 		splitPaneCentral.setDividerSize(8);

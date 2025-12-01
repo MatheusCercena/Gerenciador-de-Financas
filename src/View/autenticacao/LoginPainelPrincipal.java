@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.font.TextAttribute;
+import java.io.Serial;
 import java.util.Map;
 
 import javax.swing.BorderFactory;
@@ -23,7 +24,8 @@ import View.utils.JPasswordFieldComIcone;
 import View.utils.JTextFieldComIcone;
 
 public class LoginPainelPrincipal extends JPanel {
-	private static final long serialVersionUID = 1L;
+	@Serial
+    private static final long serialVersionUID = 1L;
 		
 	private JLabel titulo;
 	private JLabel emailLabel;

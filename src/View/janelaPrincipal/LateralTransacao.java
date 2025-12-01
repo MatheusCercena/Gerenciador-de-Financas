@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
+import java.io.Serial;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -23,7 +24,8 @@ import View.utils.CustomGBC;
 import model.Tipo;
 
 public class LateralTransacao extends JPanel{
-	private static final long serialVersionUID = 1L;
+	@Serial
+    private static final long serialVersionUID = 1L;
 	
 	private JLabel titulo;
 	private JLabel lblTipo;

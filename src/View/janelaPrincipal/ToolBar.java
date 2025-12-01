@@ -1,11 +1,10 @@
 package View.janelaPrincipal;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.io.Serial;
 
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import View.estilos.CoresDoProjeto;
@@ -13,7 +12,8 @@ import View.estilos.IconesDoProjeto;
 import View.utils.BotaoToolbar;
 
 public class ToolBar extends JPanel {
-	private static final long serialVersionUID = 1L;
+	@Serial
+    private static final long serialVersionUID = 1L;
 	
 	private JPanel esquerda;
 	private JPanel direita;
@@ -41,7 +41,7 @@ public class ToolBar extends JPanel {
 	}
 
 
-	private ToolBar inicializarComponentes() {
+	private void inicializarComponentes() {
 		
 		esquerda = new JPanel();
 		esquerda.setOpaque(false);
@@ -58,12 +58,11 @@ public class ToolBar extends JPanel {
 		origem = new BotaoToolbar(IconesDoProjeto.ORIGEM, "Origem");
 		conta = new BotaoToolbar(IconesDoProjeto.CONTA, "Conta");
 		sair = new BotaoToolbar(IconesDoProjeto.SAIR, "Sair");
-		
 
-		return this;
-	}
+
+    }
 	
-	private ToolBar contruirLayout() {
+	private void contruirLayout() {
 		
 		esquerda.add(importar);
 		esquerda.add(exportar);
@@ -75,10 +74,9 @@ public class ToolBar extends JPanel {
 
 		this.add(esquerda, BorderLayout.WEST);
 		this.add(direita, BorderLayout.EAST);
-			
 
-		return this;
-	}
+
+    }
 
 }
 

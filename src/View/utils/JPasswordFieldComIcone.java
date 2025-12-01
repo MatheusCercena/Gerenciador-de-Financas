@@ -3,16 +3,17 @@ package View.utils;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Insets;
+import java.io.Serial;
 
 import javax.swing.Icon;
 import javax.swing.JPasswordField;
 
 public class JPasswordFieldComIcone extends JPasswordField {
-	private static final long serialVersionUID = 1L;
+	@Serial
+    private static final long serialVersionUID = 1L;
 	private final Icon icone;
-    private final int padding = 25;
-    
-	public JPasswordFieldComIcone(Icon icone) {
+
+    public JPasswordFieldComIcone(Icon icone) {
 		this.icone = icone;
 		this.setPreferredSize(new Dimension(0, 55));
 	}
@@ -31,7 +32,8 @@ public class JPasswordFieldComIcone extends JPasswordField {
 		Insets base = super.getInsets();
 		
 		if (icone != null) {
-			int deslocamento = icone.getIconWidth() + padding;
+            int padding = 25;
+            int deslocamento = icone.getIconWidth() + padding;
 			return new Insets(base.top, base.left + deslocamento, base.bottom, base.right);
 		}		
 		return base;

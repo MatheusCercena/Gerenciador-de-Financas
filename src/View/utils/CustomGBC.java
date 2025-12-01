@@ -2,12 +2,14 @@ package View.utils;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.io.Serial;
 
 /*
  * Cria um GridBagConstraints com altura e largura das colunas expandíveis, sem preenchimento padrao e com ancoragem padrão no lado esquerdo. Usar os métodos para alterar as propriedades que não se encaixem no padrão.
  * */
 public class CustomGBC extends GridBagConstraints {
-	private static final long serialVersionUID = 1L;
+	@Serial
+    private static final long serialVersionUID = 1L;
 
 	public CustomGBC(int x, int y, int largura) {
 		this.insets = new Insets(5, 25, 5, 25);

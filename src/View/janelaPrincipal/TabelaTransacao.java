@@ -2,26 +2,30 @@ package View.janelaPrincipal;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.io.Serial;
+import java.util.List;
 
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import View.estilos.FontesDoProjeto;
+import model.Transacao;
 
 public class TabelaTransacao extends JTable{
-	private static final long serialVersionUID = 1L;
+	@Serial
+    private static final long serialVersionUID = 1L;
 	
 	public TabelaTransacao() {		
 		this.setModel(new DefaultTableModel(
 			new Object[][] {
 				{0, "Despesa", 01/11/2025, "Alimentação", "Supermercado Alfa", 350.40, "Compra Mensal"},
-				{1, "Receita", 05/11/2025, "Salário", "Empresa Ficticia", 4500.00, "Pagamento Ref. a Outubro"},
-				{2, "Despesa", 06/11/2025, "Moradia", "Imobiliaria NãoReal", 1800.00, "Aluguel"},
+				{1, "Receita", 05/11/2025, "Salário", "Empresa Fictícia", 4500.00, "Pagamento Ref. a Outubro"},
+				{2, "Despesa", 06/11/2025, "Moradia", "Imobiliária NãoReal", 1800.00, "Aluguel"},
 				{3, "Despesa", 10/11/2025, "Eletrônicos", "Loja Falsa", 300.00, "Notebook"},
 			},
 			new String[] {
-				"ID", "Tipo", "Data", "Categoria", "Origem", "Valor", "Observa\u00E7\u00F5es"
+				"ID", "Tipo", "Data", "Categoria", "Origem", "Valor", "Observações"
 			}
 		) {
 			Class[] columnTypes = new Class[] {
@@ -63,4 +67,24 @@ public class TabelaTransacao extends JTable{
 		this.setRowHeight(25);
 		this.setBorder(new LineBorder(new Color(0, 0, 0)));		
 	}
+
+    public void atualizarValores(List<Transacao> listaTransacao){
+        DefaultTableModel modelo = (DefaultTableModel) this.getModel();
+        modelo.setRowCount(0);
+        for (Transacao transacao : listaTransacao) {
+            modelo.addRow(new Object[] {transacao.getId(), transacao.getTipo(), transacao.getCategoria(), transacao.getOrigem(), transacao.getValor(), transacao.getData()});
+        }
+    }
+
+    private int pegarIdLinha() {
+        int linha = this.getSelectedRow();
+        if (linha != -1) {
+            Object idObj = this.getValueAt(linha, 0);
+            int id = (int) idObj;
+            return id;
+        }
+        return linha;
+    }
+
+
 }
