@@ -22,12 +22,9 @@ CREATE TABLE transacao (
 	FOREIGN KEY (id_origem) REFERENCES origem(id)
 );
 
-insert into categoria(nome) values("Teste");
-insert into origem(nome) values("TesteOrigem");
-
 INSERT INTO origem (nome) VALUES 
-("Conta Corrente (CC)"),
-("Cartão de Crédito"),
+("Alfa Transportes"),
+("Hospital AA"),
 ("PIX/Transferência"),
 ("Cesta de Ações"),
 ("Emprego Principal");
