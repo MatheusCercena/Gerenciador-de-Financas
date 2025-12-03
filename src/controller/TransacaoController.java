@@ -173,15 +173,15 @@ public class TransacaoController {
         lateralTransacao.limparCampos();
     }
 
-    public void selecionarTransacao(int viewRowIndex) {
-        TabelaTransacao tabelaTransacao = conteudoCentral.getTabelaTransacoes();
-        int modelRowIndex = tabelaTransacao.convertRowIndexToModel(tabelaTransacao.getSelectedRow());
-
-        if (modelRowIndex != -1) {
-            Transacao transacaoSelecionada = tabelaTransacao.getRowA;
-
-            lateralTransacao.exibirTransacao(transacaoSelecionada);
-        }
-    }
+//    public void selecionarTransacao(int viewRowIndex) {
+//        TabelaTransacao tabelaTransacao = conteudoCentral.getTabelaTransacoes();
+//        int modelRowIndex = tabelaTransacao.convertRowIndexToModel(tabelaTransacao.getSelectedRow());
+//
+//        if (modelRowIndex != -1) {
+//            Transacao transacaoSelecionada = tabelaTransacao.;
+//
+//            lateralTransacao.exibirTransacao(transacaoSelecionada);
+//        }
+//    }
 
 }
