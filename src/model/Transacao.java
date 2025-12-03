@@ -9,22 +9,25 @@ public class Transacao {
     private Origem origem;
     private double valor;
     private Date data;
+    private String observacoes;
 
-    public Transacao(int id, Tipo tipo, Categoria categoria, Origem origem, double valor, Date data) {
+    public Transacao(int id, Tipo tipo, Categoria categoria, Origem origem, double valor, Date data, String observacoes) {
         this.id = id;
         this.tipo = tipo;
         this.categoria = categoria;
         this.origem = origem;
         this.valor = valor;
         this.data = data;
+        this.observacoes = observacoes;
     }
 
-    public Transacao(Tipo tipo, Categoria categoria, Origem origem, double valor, Date data) {
+    public Transacao(Tipo tipo, Categoria categoria, Origem origem, double valor, Date data, String observacoes) {
         this.tipo = tipo;
         this.categoria = categoria;
         this.origem = origem;
         this.valor = valor;
         this.data = data;
+        this.observacoes = observacoes;
     }
 
     public Transacao() {
@@ -85,4 +88,11 @@ public class Transacao {
         this.data = data;
     }
 
+    public String getObservacoes() {
+        return observacoes;
+    }
+
+    public void setObservacoes(String observacoes) {
+        this.observacoes = observacoes;
+    }
 }

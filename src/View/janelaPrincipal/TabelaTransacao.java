@@ -1,31 +1,31 @@
 package View.janelaPrincipal;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.io.Serial;
+import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+import javax.swing.RowSorter.SortKey;
 
 import View.estilos.FontesDoProjeto;
-import controller.CategoriaDao;
 import controller.TransacaoDao;
 import model.Transacao;
 
 public class TabelaTransacao extends JTable{
 	@Serial
     private static final long serialVersionUID = 1L;
-	
-	public TabelaTransacao() {		
+    private TableRowSorter<TableModel> sorter;
+
+	public TabelaTransacao() {
 		this.setModel(new DefaultTableModel(
-			new Object[][] {
-				{0, "Despesa", 01/11/2025, "Alimentação", "Supermercado Alfa", 350.40, "Compra Mensal"},
-				{1, "Receita", 05/11/2025, "Salário", "Empresa Fictícia", 4500.00, "Pagamento Ref. a Outubro"},
-				{2, "Despesa", 06/11/2025, "Moradia", "Imobiliária NãoReal", 1800.00, "Aluguel"},
-				{3, "Despesa", 10/11/2025, "Eletrônicos", "Loja Falsa", 300.00, "Notebook"},
-			},
+			new Object[][] {},
 			new String[] {
 				"ID", "Tipo", "Data", "Categoria", "Origem", "Valor", "Observações"
 			}
@@ -43,7 +43,18 @@ public class TabelaTransacao extends JTable{
 				return columnEditables[column];
 			}
 		});
-		
+
+        sorter = new TableRowSorter<>(this.getModel());
+        this.setRowSorter(sorter);
+        sorter.setSortsOnUpdates(true);
+        List<SortKey> sortKeys = new ArrayList<>();
+
+        RowSorter.SortKey sortKey = new RowSorter.SortKey(0, SortOrder.DESCENDING);
+
+        sortKeys.add(sortKey);
+        sorter.setSortKeys(sortKeys);
+        sorter.sort();
+
 		this.getColumnModel().getColumn(0).setPreferredWidth(60);
 		this.getColumnModel().getColumn(0).setMinWidth(40);
 		
@@ -74,11 +85,22 @@ public class TabelaTransacao extends JTable{
         this.atualizarValores(transacao.listar());
 	}
 
+
+
     public void atualizarValores(List<Transacao> listaTransacao){
         DefaultTableModel modelo = (DefaultTableModel) this.getModel();
         modelo.setRowCount(0);
         for (Transacao transacao : listaTransacao) {
-            modelo.addRow(new Object[] {transacao.getId(), transacao.getTipo(), transacao.getCategoria(), transacao.getOrigem(), transacao.getValor(), transacao.getData()});
+            String tipoCapitalizado =  transacao.getTipo().toString().toLowerCase();
+            DateFormat formatoData = DateFormat.getDateInstance(DateFormat.SHORT, new Locale("pt", "BR"));
+
+            modelo.addRow(new Object[] {transacao.getId(),
+                    tipoCapitalizado.substring(0, 1).toUpperCase() + tipoCapitalizado.substring(1),
+                    formatoData.format(transacao.getData()),
+                    transacao.getCategoria().getNome(),
+                    transacao.getOrigem().getNome(),
+                    transacao.getValor(),
+                    transacao.getObservacoes()});//DateFormat.getDateInstance(DateFormat.SHORT, new Locale("pt", "BR"))
         }
     }
 
@@ -91,6 +113,7 @@ public class TabelaTransacao extends JTable{
         }
         return linha;
     }
+
 
 
 }

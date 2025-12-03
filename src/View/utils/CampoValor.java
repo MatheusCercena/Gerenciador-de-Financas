@@ -27,7 +27,7 @@ public class CampoValor extends JFormattedTextField{
         this.setValue(0.00);
 	}
 	
-    public double getDouble() {
+    public double getValor() {
     	Number value = (Number) getValue();
         return value.doubleValue();
     }

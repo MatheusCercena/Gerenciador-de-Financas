@@ -26,7 +26,7 @@ public class ConteudoCentral extends JPanel {
 	private final JLabel lblComboBox = new JLabel("Selecione a data que deseja filtrar");
 	private final JComboBox<FiltrosPorData> comboBox = new JComboBox<FiltrosPorData>();
 	private JLabel lblSaldo = new JLabel("Saldo: ");
-	private JTable tabelaTransacoes = new TabelaTransacao();
+	private TabelaTransacao tabelaTransacoes = new TabelaTransacao();
 	private JScrollPane scrollTabelaTransacoes;
 
 	public ConteudoCentral() {
@@ -73,4 +73,7 @@ public class ConteudoCentral extends JPanel {
 		this.add(comp, gbc);
 	}
 
+    public TabelaTransacao getTabelaTransacoes() {
+        return tabelaTransacoes;
+    }
 }

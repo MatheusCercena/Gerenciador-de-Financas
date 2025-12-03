@@ -10,6 +10,11 @@ import javax.swing.JFrame;
 import javax.swing.JSplitPane;
 
 import View.estilos.IconesDoProjeto;
+import controller.CategoriaDao;
+import controller.OrigemDao;
+import controller.TransacaoController;
+import controller.TransacaoDao;
+import model.Transacao;
 
 public class JanelaPrincipal extends JFrame{
 	@Serial
@@ -18,6 +23,9 @@ public class JanelaPrincipal extends JFrame{
 	private final ToolBar toolbar = new ToolBar();
 	private final LateralTransacao lateralTransacao = new LateralTransacao();
 	private final ConteudoCentral conteudoCentral = new ConteudoCentral();
+    private OrigemDao origemDao = new OrigemDao();
+    private CategoriaDao categoriaDao = new CategoriaDao();
+    private TransacaoDao transacaoDao = new TransacaoDao();
 
     public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -48,6 +56,8 @@ public class JanelaPrincipal extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.getContentPane().setLayout(new BorderLayout(0, 0));
 
+        TransacaoController controller = new TransacaoController(origemDao, categoriaDao, transacaoDao, lateralTransacao, conteudoCentral);
+
         JSplitPane splitPaneCentral = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, conteudoCentral, lateralTransacao);
 		splitPaneCentral.setResizeWeight(0.75);
 		splitPaneCentral.setBorder(null);
@@ -62,4 +72,15 @@ public class JanelaPrincipal extends JFrame{
 		splitPaneCentral.setDividerLocation((int) (total * 0.75));
 	}
 
+    public ToolBar getToolbar() {
+        return toolbar;
+    }
+
+    public LateralTransacao getLateralTransacao() {
+        return lateralTransacao;
+    }
+
+    public ConteudoCentral getConteudoCentral() {
+        return conteudoCentral;
+    }
 }

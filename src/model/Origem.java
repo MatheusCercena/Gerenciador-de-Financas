@@ -44,10 +44,7 @@ public class Origem {
 
     @Override
     public String toString() {
-        return "Origem{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                '}';
+        return nome;
     }
 }
 

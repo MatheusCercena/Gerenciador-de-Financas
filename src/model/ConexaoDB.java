@@ -14,7 +14,7 @@ public class ConexaoDB {
             e.printStackTrace();
         }
 
-        String url = "jdbc:mysql://localhost:3306/ies";
+        String url = "jdbc:mysql://localhost:3306/financas";
         String senha = "1234";
         String user = "root";
 

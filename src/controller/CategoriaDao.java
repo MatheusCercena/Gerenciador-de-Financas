@@ -31,7 +31,28 @@ public class CategoriaDao {
         return categoria;
     }
 
-    public Categoria inserir (Categoria categoria){
+    public Categoria buscarNome(String nome) {
+        Categoria categoria = null;
+        String consulta = "SELECT id, nome FROM categoria WHERE TRIM(LOWER(nome)) = TRIM(LOWER(?))";
+
+        try (Connection conn = getConexao();
+             PreparedStatement pst = conn.prepareStatement(consulta)) {
+
+            pst.setString(1, nome);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                String nomeEncontrado = rs.getString("nome");
+                categoria = new Categoria(id, nomeEncontrado);
+            }
+            rs.close();
+        } catch (Exception e) {e.printStackTrace();}
+
+        return categoria;
+    }
+
+    public Categoria inserir(Categoria categoria){
         String consulta = "insert into categoria (nome) values (?)";
 
         try (Connection conn = getConexao();

@@ -31,6 +31,27 @@ public class OrigemDao {
         return origem;
     }
 
+    public Origem buscarNome(String nome) {
+        Origem origem = null;
+        String consulta = "SELECT id, nome FROM origem WHERE TRIM(LOWER(nome)) = TRIM(LOWER(?))";
+
+        try (Connection conn = getConexao();
+             PreparedStatement pst = conn.prepareStatement(consulta)) {
+
+            pst.setString(1, nome);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                String nomeEncontrado = rs.getString("nome");
+                origem = new Origem(id, nomeEncontrado);
+            }
+            rs.close();
+        } catch (Exception e) {e.printStackTrace();}
+
+        return origem;
+    }
+
     public Origem inserir (Origem origem){
         String consulta = "insert into categoria (nome) values (?)";
 

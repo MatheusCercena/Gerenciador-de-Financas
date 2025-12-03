@@ -1,6 +1,11 @@
 package model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Objects;
+
+import static model.ConexaoDB.getConexao;
 
 public class Categoria {
     private int id;
@@ -44,9 +49,6 @@ public class Categoria {
 
     @Override
     public String toString() {
-        return "Categoria{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                '}';
+        return nome;
     }
 }
