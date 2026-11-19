@@ -27,11 +27,5 @@ O projeto utiliza uma arquitetura baseada nos princípios de POO e opera com as 
 | **Linguagem Principal** | Java | Desenvolvimento da lógica de negócio e interface. |
 | **Banco de Dados** | *MySQL | Responsável pela persistência e integridade dos dados. |
 | **Conexão BD** | JDBC | Utilizado para a comunicação entre a aplicação Java e o SGBD. |
+| **Interface Gráfica** | JavaSwing | Janela principal do aplicativo com rescursos básicos. |
 
-## Instalação e Configuração
-
-Para executar a aplicação localmente, é necessário ter instalado o seguinte software:
-
-* **Java Development Kit (JDK):** Versão 8 ou superior.
-* **MySQL (SGBD):** Configurado em uma conexão, foi usado a porta 127.0.0.1::3306, mas podem ser alterados na Classe ConexaoDB em src > model.
-* **Em seguida, executar o script
