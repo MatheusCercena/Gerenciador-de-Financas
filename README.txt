@@ -33,5 +33,5 @@ O projeto utiliza uma arquitetura baseada nos princípios de POO e opera com as 
 Para executar a aplicação localmente, é necessário ter instalado o seguinte software:
 
 * **Java Development Kit (JDK):** Versão 8 ou superior.
-* **MySQL (SGBD):** Configurado em uma conexão, foi usado a porta 127.0.0.1::3306 com Admin "root", senha 1234, mas podem ser alterados na Classe ConexaoDB em src > model.
+* **MySQL (SGBD):** Configurado em uma conexão, foi usado a porta 127.0.0.1::3306, mas podem ser alterados na Classe ConexaoDB em src > model.
 * **Em seguida, executar o script
